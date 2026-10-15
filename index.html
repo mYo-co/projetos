@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#063b24">
+<title>mYo — Projeto 1000 Pintos &amp; 10 Galinhas</title>
+<style>
+:root{--g:#063b24;--g2:#0b4b2d;--gold:#d9a62e;--gold2:#f2cc72;--cream:#fff8e8}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:18px}body{margin:0;background:var(--cream);font-family:Inter,system-ui,-apple-system,sans-serif;color:#153024}
+.page{max-width:760px;margin:auto;background:var(--cream);overflow:hidden}.hero{background:#021e12}.hero img,.offer img{display:block;width:100%;height:auto}
+.section{padding:38px 18px;text-align:center}.eyebrow{color:var(--gold);font-size:11px;font-weight:900;letter-spacing:.15em;text-transform:uppercase}
+h2{font-family:Georgia,serif;color:var(--g);font-size:clamp(30px,8vw,46px);line-height:1;margin:12px 0}p{line-height:1.65;color:#5b6860}
+.flow{display:grid;grid-template-columns:repeat(5,1fr);margin-top:24px;background:white;border:1px solid #e5dfd2;border-radius:20px;overflow:hidden}.flow div{padding:12px 4px;border-right:1px solid #e5dfd2}.flow div:last-child{border:0}.flow b{color:var(--gold);display:block}.flow span{font-size:9px;font-weight:900;color:var(--g)}
+.slider-wrap{padding:6px 0 18px}.slider{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:0 18px 8px}.slider::-webkit-scrollbar{display:none}.slide{flex:0 0 84%;scroll-snap-align:center;border-radius:24px;overflow:hidden;box-shadow:0 16px 45px #0002;background:white}.slide img{width:100%;aspect-ratio:4/5;object-fit:cover}
+.dots{text-align:center}.dot{display:inline-block;width:6px;height:6px;border-radius:9px;background:#ccc;margin:3px}.dot.active{width:18px;background:var(--gold)}
+.vision{padding:48px 20px;background:var(--g);text-align:center}.vision h2{color:white}.vision p{color:#dbe8df}.goldline{width:70px;height:3px;background:var(--gold);margin:20px auto}
+.offer{background:var(--g);padding:0}.offer-card{border:0;border-radius:0;overflow:hidden;background:#042817;box-shadow:none}
+.offer-card>a{display:block;cursor:pointer}.offer-content{text-align:center;padding:24px 18px 28px;color:white}.tag{display:inline-block;background:var(--gold);color:var(--g);padding:8px 14px;border-radius:99px;font-size:11px;font-weight:900;letter-spacing:.1em}.offer h2{color:white}.offer p{color:#dbe8df}.price{color:var(--gold2);font-size:64px;font-weight:950;line-height:1;margin:20px 0}.price small{font-size:22px}
+.cta{display:flex;align-items:center;justify-content:center;gap:12px;background:linear-gradient(135deg,#f4cf79,#d9a62e);border:1px solid #f8dfa0;color:#062818;border-radius:18px;padding:17px 20px;font-weight:950;text-decoration:none;text-align:center}.cta span{display:grid;place-items:center;width:28px;height:28px;flex:0 0 28px;border-radius:50%;background:var(--g);color:white}
+.offer-cta{padding:0 18px 32px;background:var(--g)}.offer-cta .cta{width:100%}
+.brand{text-align:center;padding:38px 18px 60px}.brand strong{font:700 54px Georgia,serif;color:var(--g)}.brand small{display:block;color:#9b6e17;font-weight:900;letter-spacing:.15em}
+.music-control{position:fixed;z-index:1000;right:16px;bottom:82px;width:54px;height:54px;border:1px solid rgba(217,166,46,.6);border-radius:50%;background:rgba(6,59,36,.95);color:#f2cc72;display:grid;place-items:center;cursor:pointer;box-shadow:0 12px 35px rgba(0,0,0,.3);-webkit-tap-highlight-color:transparent}.music-control:active{transform:scale(.94)}
+.music-bars{display:flex;align-items:center;justify-content:center;gap:3px;height:22px}.music-bars i{display:block;width:3px;height:10px;border-radius:4px;background:#f2cc72}
+.music-control.playing .music-bars i:nth-child(1){animation:musicbar .75s ease-in-out infinite alternate}.music-control.playing .music-bars i:nth-child(2){animation:musicbar .55s ease-in-out infinite alternate .1s}.music-control.playing .music-bars i:nth-child(3){animation:musicbar .85s ease-in-out infinite alternate .2s}
+@keyframes musicbar{from{height:7px}to{height:20px}}.pause-icon{display:none;font-size:18px;line-height:1}.music-control.paused .pause-icon{display:block}.music-control.paused .music-bars{display:none}
+@media(max-width:380px){.offer-cta{padding-left:12px;padding-right:12px}.cta{padding:15px 12px;font-size:14px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.music-control.playing .music-bars i{animation:none}}
+</style>
+</head>
+<body>
+<audio id="bgMusic" src="assets/music.mp3" autoplay loop playsinline preload="auto"></audio>
+<button class="music-control" id="musicControl" type="button" aria-label="Pausar música" title="Pausar música"><span class="music-bars" aria-hidden="true"><i></i><i></i><i></i></span><span class="pause-icon" aria-hidden="true">Ⅱ</span></button>
+<main class="page">
+<section class="hero"><img src="assets/hero.jpeg" alt="mYo Projeto 1000 Pintos &amp; 10 Galinhas"></section>
+
+<section class="section">
+  <div class="eyebrow">O começo de uma jornada</div>
+  <h2>Começa pequeno.<br>Produz. Aprende. <span style="color:#d9a62e">Cresce.</span></h2>
+  <p>O <b>Projeto 1000 Pintos &amp; 10 Galinhas</b> apresenta uma forma prática de começar, organizar a produção e compreender cada etapa.</p>
+  <div class="flow"><div><b>01</b><span>COMEÇA</span></div><div><b>02</b><span>CUIDA</span></div><div><b>03</b><span>PRODUZ</span></div><div><b>04</b><span>APRENDE</span></div><div><b>05</b><span>CRESCE</span></div></div>
+</section>
+
+<section class="slider-wrap">
+  <div class="slider auto" data-speed="3500">
+    <article class="slide"><img src="assets/slide-01.jpeg" alt="Projeto mYo — exemplo 1"></article>
+    <article class="slide"><img src="assets/slide-02.jpeg" alt="Projeto mYo — exemplo 2"></article>
+    <article class="slide"><img src="assets/slide-03.jpeg" alt="Projeto mYo — exemplo 3"></article>
+    <article class="slide"><img src="assets/slide-04.jpeg" alt="Projeto mYo — exemplo 4"></article>
+  </div>
+  <div class="dots"><i class="dot active"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+</section>
+
+<section class="vision">
+  <div class="eyebrow">A visão</div>
+  <h2>Hoje são mil.<br>Amanhã pode ser muito mais.</h2>
+  <div class="goldline"></div>
+  <p>Aprender primeiro, aplicar depois e evoluir com planeamento.</p>
+</section>
+
+<section class="slider-wrap">
+  <div class="slider auto" data-speed="4100">
+    <article class="slide"><img src="assets/slide-05.jpeg" alt="Projeto mYo — exemplo 5"></article>
+    <article class="slide"><img src="assets/slide-06.jpeg" alt="Projeto mYo — exemplo 6"></article>
+    <article class="slide"><img src="assets/slide-07.jpeg" alt="Projeto mYo — exemplo 7"></article>
+    <article class="slide"><img src="assets/slide-08.jpeg" alt="Projeto mYo — exemplo 8"></article>
+  </div>
+  <div class="dots"><i class="dot active"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+</section>
+
+<section class="offer" id="oferta">
+  <div class="offer-card">
+    <a id="checkout-link" href="https://pagar.co.mz/p/projeto-1000-pintos-10-galinhas-500-ovos-7-dias--8ir74i" aria-label="Comprar o Projeto mYo">
+      <img src="assets/offer.jpeg" alt="Oferta Projeto 1000 Pintos, 10 Galinhas e 500 Ovos">
+    </a>
+  </div>
+  <div class="offer-cta">
+    <a id="checkout-cta" class="cta" href="https://pagar.co.mz/p/projeto-1000-pintos-10-galinhas-500-ovos-7-dias--8ir74i">
+      CLIQUE AQUI PARA TER OS 3 PROJETOS <span aria-hidden="true">→</span>
+    </a>
+  </div>
+</section>
+
+<section class="brand">
+  <strong>mY<span style="color:#73b938">O</span></strong>
+  <small>CUIDA · NUTRE · VIVE</small>
+  <p>Conhecimento que transforma. Pessoas que produzem o futuro.</p>
+</section>
+</main>
+
+<script>
+(function(){
+  const music=document.getElementById('bgMusic'),button=document.getElementById('musicControl');
+  if(!music||!button)return;
+  let manuallyPaused=false;
+  function update(){
+    const playing=!music.paused;
+    button.classList.toggle('playing',playing);
+    button.classList.toggle('paused',!playing);
+    button.setAttribute('aria-label',playing?'Pausar música':'Tocar música');
+    button.title=playing?'Pausar música':'Tocar música';
+  }
+  function play(){if(manuallyPaused||!music.paused)return;music.play().catch(function(){});}
+  button.addEventListener('click',function(){
+    if(music.paused){manuallyPaused=false;play();}
+    else{manuallyPaused=true;music.pause();}
+    update();
+  });
+  music.addEventListener('play',update);
+  music.addEventListener('pause',update);
+  document.addEventListener('DOMContentLoaded',play,{once:true});
+  window.addEventListener('load',play,{once:true});
+  document.addEventListener('pointerdown',function(){if(!manuallyPaused&&music.paused)play();},{passive:true});
+  update();
+})();
+
+/* Mantém os carrosséis automáticos e permite interação por toque. */
+document.querySelectorAll('.auto').forEach(function(s){
+  let i=0,t;
+  const slides=[...s.children],dots=s.parentElement.querySelectorAll('.dot');
+  function go(n){
+    i=(n+slides.length)%slides.length;
+    s.scrollTo({left:slides[i].offsetLeft-s.offsetLeft-18,behavior:'smooth'});
+    dots.forEach((d,k)=>d.classList.toggle('active',k===i));
+  }
+  function start(){clearInterval(t);t=setInterval(()=>go(i+1),+s.dataset.speed||4000);}
+  start();
+  s.addEventListener('touchstart',()=>clearInterval(t),{passive:true});
+  s.addEventListener('touchend',start,{passive:true});
+});
+</script>
+<script src="https://myo-tracking.floot.app/_api/tracker"></script>
+</body>
+</html>
