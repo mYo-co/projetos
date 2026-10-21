@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#063b24">
+<meta name="description" content="Projeto mYo — 1000 Pintos & 10 Galinhas. Começa pequeno, produz, aprende e cresce com planeamento.">
+<title>mYo — Projeto 1000 Pintos &amp; 10 Galinhas</title>
+<style>
+:root{--g:#063b24;--g2:#0b4b2d;--gold:#d9a62e;--gold2:#f2cc72;--cream:#fff8e8;--ink:#153024;--muted:#5b6860}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:18px}
+body{margin:0;background:var(--cream);font-family:Inter,system-ui,-apple-system,sans-serif;color:var(--ink)}
+.page{max-width:760px;margin:auto;background:var(--cream);overflow:hidden}
+.hero{background:#021e12}.hero img,.offer img{display:block;width:100%;height:auto}
+.section{padding:38px 18px;text-align:center}
+.eyebrow{color:#9b6e17;font-size:11px;font-weight:900;letter-spacing:.15em;text-transform:uppercase}
+h2{font-family:Georgia,serif;color:var(--g);font-size:clamp(30px,8vw,46px);line-height:1.04;margin:12px 0}
+h3{font-family:Georgia,serif;color:var(--g);font-size:25px;line-height:1.15;margin:0 0 12px}
+p{line-height:1.7;color:var(--muted);margin:12px 0}
+strong,b{color:inherit}
+.lead{font-size:17px;color:#314d3d}
+.highlight{color:#b27d12}
+.flow{display:grid;grid-template-columns:repeat(5,1fr);margin-top:24px;background:white;border:1px solid #e5dfd2;border-radius:20px;overflow:hidden}
+.flow div{padding:12px 4px;border-right:1px solid #e5dfd2}.flow div:last-child{border:0}
+.flow b{color:var(--gold);display:block}.flow span{font-size:9px;font-weight:900;color:var(--g)}
+.pain{background:#fffdf7;padding:38px 20px;text-align:left}
+.pain .eyebrow{text-align:center}.pain h2{text-align:center}
+.pain-list{list-style:none;margin:22px 0 0;padding:0;display:grid;gap:12px}
+.pain-list li{position:relative;padding:14px 14px 14px 44px;background:#fff;border:1px solid #eee5d4;border-radius:14px;color:#405348;line-height:1.55}
+.pain-list li:before{content:"✓";position:absolute;left:15px;top:14px;color:#a87915;font-weight:950}
+.slider-wrap{padding:6px 0 18px}
+.slider{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:0 18px 8px}
+.slider::-webkit-scrollbar{display:none}
+.slide{flex:0 0 84%;scroll-snap-align:center;border-radius:24px;overflow:hidden;box-shadow:0 16px 45px #0002;background:white}
+.slide img{width:100%;aspect-ratio:4/5;object-fit:cover}
+.dots{text-align:center}.dot{display:inline-block;width:6px;height:6px;border-radius:9px;background:#ccc;margin:3px}.dot.active{width:18px;background:var(--gold)}
+.vision{padding:48px 20px;background:var(--g);text-align:center}
+.vision h2{color:white}.vision p{color:#dbe8df}.vision .eyebrow{color:var(--gold2)}
+.goldline{width:70px;height:3px;background:var(--gold);margin:20px auto}
+.steps{display:grid;gap:10px;margin-top:22px;text-align:left}
+.step{display:flex;gap:13px;align-items:flex-start;background:#fff;border:1px solid #e9e1d3;border-radius:15px;padding:14px}
+.step-num{display:grid;place-items:center;flex:0 0 34px;height:34px;border-radius:50%;background:#f7e7bd;color:var(--g);font-weight:950}
+.step b{display:block;color:var(--g);margin-bottom:3px}.step p{font-size:14px;margin:0}
+.bridge{padding:40px 20px;text-align:center;background:#f5edda}
+.bridge h2{font-size:clamp(29px,7vw,40px)}
+.bridge .note{font-size:13px}
+.offer{background:var(--g);padding:0}
+.offer-card{border:0;border-radius:0;overflow:hidden;background:#042817;box-shadow:none}
+.offer-card>a{display:block;cursor:pointer}.offer-content{text-align:center;padding:24px 18px 28px;color:white}
+.tag{display:inline-block;background:var(--gold);color:var(--g);padding:8px 14px;border-radius:99px;font-size:11px;font-weight:900;letter-spacing:.1em}
+.offer h2{color:white}.offer h3{color:white}.offer p{color:#dbe8df}
+.offer-copy{padding:30px 20px 10px;text-align:center;background:var(--g)}
+.offer-copy p{color:#dbe8df}
+.offer-bullets{display:grid;gap:9px;text-align:left;max-width:480px;margin:20px auto 0;color:#f7f2e7;font-size:14px;line-height:1.5}
+.offer-bullets div:before{content:"✓";color:var(--gold2);font-weight:950;margin-right:9px}
+.price{color:var(--gold2);font-size:64px;font-weight:950;line-height:1;margin:20px 0}
+.price small{font-size:22px}
+.cta{display:flex;align-items:center;justify-content:center;gap:12px;background:linear-gradient(135deg,#f4cf79,#d9a62e);border:1px solid #f8dfa0;color:#062818;border-radius:18px;padding:17px 20px;font-weight:950;text-decoration:none;text-align:center;line-height:1.3}
+.cta span{display:grid;place-items:center;width:28px;height:28px;flex:0 0 28px;border-radius:50%;background:var(--g);color:white}
+.offer-cta{padding:0 18px 32px;background:var(--g)}.offer-cta .cta{width:100%}
+.disclaimer{font-size:12px;color:#b9cbbf!important;margin:14px auto 0;max-width:520px}
+.brand{text-align:center;padding:38px 18px 60px}
+.brand strong{font:700 54px Georgia,serif;color:var(--g)}
+.brand small{display:block;color:#9b6e17;font-weight:900;letter-spacing:.15em}
+.music-control{position:fixed;z-index:1000;right:16px;bottom:82px;width:54px;height:54px;border:1px solid rgba(217,166,46,.6);border-radius:50%;background:rgba(6,59,36,.95);color:#f2cc72;display:grid;place-items:center;cursor:pointer;box-shadow:0 12px 35px rgba(0,0,0,.3);-webkit-tap-highlight-color:transparent}
+.music-control:active{transform:scale(.94)}
+.music-bars{display:flex;align-items:center;justify-content:center;gap:3px;height:22px}
+.music-bars i{display:block;width:3px;height:10px;border-radius:4px;background:#f2cc72}
+.music-control.playing .music-bars i:nth-child(1){animation:musicbar .75s ease-in-out infinite alternate}
+.music-control.playing .music-bars i:nth-child(2){animation:musicbar .55s ease-in-out infinite alternate .1s}
+.music-control.playing .music-bars i:nth-child(3){animation:musicbar .85s ease-in-out infinite alternate .2s}
+@keyframes musicbar{from{height:7px}to{height:20px}}
+.pause-icon{display:none;font-size:18px;line-height:1}
+.music-control.paused .pause-icon{display:block}.music-control.paused .music-bars{display:none}
+@media(max-width:380px){.offer-cta{padding-left:12px;padding-right:12px}.cta{padding:15px 12px;font-size:14px}.flow span{font-size:8px}.flow div{padding:10px 2px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.music-control.playing .music-bars i{animation:none}}
+
+/* Animações premium, leves e compatíveis com dispositivos móveis */
+.hero img{transform-origin:center;animation:heroReveal 1.1s cubic-bezier(.2,.75,.25,1) both}
+@keyframes heroReveal{from{opacity:0;transform:scale(1.045)}to{opacity:1;transform:scale(1)}}
+.reveal-ready .reveal{opacity:0;transform:translateY(24px);transition:opacity .72s ease,transform .72s cubic-bezier(.2,.7,.2,1);transition-delay:var(--reveal-delay,0ms)}
+.reveal-ready .reveal.is-visible{opacity:1;transform:translateY(0)}
+.reveal-ready .reveal-left{transform:translateX(-22px)}
+.reveal-ready .reveal-left.is-visible{transform:translateX(0)}
+.reveal-ready .reveal-scale{transform:scale(.965)}
+.reveal-ready .reveal-scale.is-visible{transform:scale(1)}
+.pain-list li,.step,.slide,.offer-card{transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease}
+.pain-list li:hover,.step:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(6,59,36,.09);border-color:#d9c58f}
+.slide{scroll-behavior:smooth}
+.slide img{transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.slide:hover img{transform:scale(1.025)}
+.cta{position:relative;isolation:isolate;overflow:hidden;box-shadow:0 8px 22px rgba(217,166,46,.17);transition:transform .22s ease,box-shadow .22s ease,filter .22s ease}
+.cta:before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(110deg,transparent 20%,rgba(255,255,255,.48) 48%,transparent 72%);transform:translateX(-130%);animation:ctaShine 5.5s ease-in-out infinite}
+.cta span{transition:transform .22s ease}
+.cta:hover{transform:translateY(-2px);box-shadow:0 13px 30px rgba(217,166,46,.27);filter:saturate(1.06)}
+.cta:hover span{transform:translateX(3px)}
+.cta:active{transform:scale(.985)}
+@keyframes ctaShine{0%,68%,100%{transform:translateX(-130%)}84%{transform:translateX(130%)}}
+.tag{animation:tagFloat 4s ease-in-out infinite}
+@keyframes tagFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.goldline{position:relative;overflow:hidden}
+.goldline:after{content:"";position:absolute;inset:0;background:rgba(255,255,255,.72);transform:translateX(-110%);animation:lineSweep 3.8s ease-in-out infinite}
+@keyframes lineSweep{0%,65%,100%{transform:translateX(-110%)}82%{transform:translateX(110%)}}
+.dot{transition:width .25s ease,background .25s ease}
+.music-control{transition:transform .2s ease,box-shadow .25s ease}
+.music-control:hover{transform:translateY(-2px);box-shadow:0 14px 38px rgba(0,0,0,.36)}
+.reading-progress{position:fixed;z-index:1100;top:0;left:0;width:100%;height:3px;background:rgba(6,59,36,.08);pointer-events:none}
+.reading-progress span{display:block;width:0;height:100%;background:linear-gradient(90deg,#d9a62e,#f2cc72);transform-origin:left}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .reveal-ready .reveal{opacity:1;transform:none}
+}
+
+
+/* Scroll premium: sequência, profundidade e destaque da oferta */
+.reveal-group > *{--stagger-index:0}
+.reveal-ready .reveal-group > *{
+  opacity:0;transform:translateY(20px);
+  transition:opacity .62s ease,transform .62s cubic-bezier(.2,.7,.2,1);
+  transition-delay:calc(var(--stagger-index,0) * 95ms)
+}
+.reveal-ready .reveal-group.is-visible > *{opacity:1;transform:translateY(0)}
+.reveal-ready .reveal-group > *:nth-child(1){--stagger-index:0}
+.reveal-ready .reveal-group > *:nth-child(2){--stagger-index:1}
+.reveal-ready .reveal-group > *:nth-child(3){--stagger-index:2}
+.reveal-ready .reveal-group > *:nth-child(4){--stagger-index:3}
+.reveal-ready .reveal-group > *:nth-child(5){--stagger-index:4}
+.parallax-wrap{overflow:hidden}
+.parallax-wrap .slide img{will-change:transform;transform:translate3d(0,var(--parallax-y,0px),0) scale(1.025)}
+.offer.is-visible .offer-copy,.offer.is-visible .offer-card,.offer.is-visible .offer-cta{animation:offerArrive .75s cubic-bezier(.2,.7,.2,1) both}
+.offer.is-visible .offer-card{animation-delay:.12s}
+.offer.is-visible .offer-cta{animation-delay:.22s}
+@keyframes offerArrive{from{opacity:.65;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){
+  .reveal-ready .reveal-group > *{opacity:1;transform:none;transition:none}
+  .parallax-wrap .slide img{transform:none!important}
+  .offer.is-visible .offer-copy,.offer.is-visible .offer-card,.offer.is-visible .offer-cta{animation:none}
+}
+
+</style>
+</head>
+<body>
+<div class="reading-progress" aria-hidden="true"><span id="readingProgress"></span></div>
+<audio id="bgMusic" src="assets/music.mp3" loop playsinline preload="auto"></audio>
+<button class="music-control paused" id="musicControl" type="button" aria-label="Tocar música" title="Tocar música"><span class="music-bars" aria-hidden="true"><i></i><i></i><i></i></span><span class="pause-icon" aria-hidden="true">Ⅱ</span></button>
+
+<main class="page">
+<section class="hero">
+  <img src="assets/hero.jpeg" alt="mYo — Projeto 1000 Pintos &amp; 10 Galinhas">
+</section>
+
+<section class="section reveal">
+  <div class="eyebrow">O começo de uma jornada</div>
+  <h2>Começa pequeno.<br>Produz. Aprende.<br><span class="highlight">Cresce.</span></h2>
+  <p class="lead">Transforma a tua vontade de criar galinhas num projecto com <b>direcção, organização e potencial para crescer.</b></p>
+  <p>Já imaginaste ter a tua própria criação de galinhas e construir, passo a passo, uma actividade que possa contribuir para o sustento da tua família?</p>
+  <div class="flow"><div><b>01</b><span>COMEÇA</span></div><div><b>02</b><span>CUIDA</span></div><div><b>03</b><span>PRODUZ</span></div><div><b>04</b><span>APRENDE</span></div><div><b>05</b><span>CRESCE</span></div></div>
+</section>
+
+<section class="pain reveal">
+  <div class="eyebrow">Uma forma mais organizada de começar</div>
+  <h2>Queres começar, mas ainda tens dúvidas?</h2>
+  <p>Talvez já tenhas pensado em criar galinhas, mas ainda não saibas bem como dar os primeiros passos.</p>
+  <ul class="pain-list reveal-group">
+    <li class="reveal" style="--reveal-delay:80ms">Como organizar a criação e o espaço disponível?</li>
+    <li class="reveal" style="--reveal-delay:80ms">Como planear as etapas da produção?</li>
+    <li class="reveal" style="--reveal-delay:80ms">Como preparar-te antes de investir tempo e dinheiro?</li>
+    <li class="reveal" style="--reveal-delay:80ms">Como transformar uma ideia num projecto com objectivos claros?</li>
+  </ul>
+  <p style="text-align:center;margin-top:22px"><b>A verdade é que não precisas de começar com uma grande estrutura para começares a aprender.</b> Precisas de orientação, planeamento e vontade de evoluir.</p>
+</section>
+
+<section class="slider-wrap reveal reveal-scale parallax-wrap">
+  <div class="slider auto" data-speed="3500">
+    <article class="slide"><img src="assets/slide-01.jpeg" alt="Projeto mYo — imagem do projeto 1"></article>
+    <article class="slide"><img src="assets/slide-02.jpeg" alt="Projeto mYo — imagem do projeto 2"></article>
+    <article class="slide"><img src="assets/slide-03.jpeg" alt="Projeto mYo — imagem do projeto 3"></article>
+    <article class="slide"><img src="assets/slide-04.jpeg" alt="Projeto mYo — imagem do projeto 4"></article>
+  </div>
+  <div class="dots"><i class="dot active"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+</section>
+
+<section class="vision reveal">
+  <div class="eyebrow">A visão mYo</div>
+  <h2>Hoje são mil.<br>Amanhã pode ser muito mais.</h2>
+  <div class="goldline"></div>
+  <p>Em vez de olhares apenas para aquilo que podes criar hoje, começa também a pensar no que podes construir amanhã.</p>
+  <p><b>Aprender primeiro, aplicar depois e evoluir com planeamento.</b></p>
+</section>
+
+<section class="section reveal">
+  <div class="eyebrow">O teu percurso</div>
+  <h2>Uma visão para quem quer começar e crescer</h2>
+  <p>O Projeto mYo convida-te a olhar para a criação como uma jornada de aprendizagem e organização.</p>
+  <div class="steps reveal-group">
+    <div class="step reveal" style="--reveal-delay:70ms"><div class="step-num">01</div><div><b>COMEÇA</b><p>Dá os primeiros passos com uma visão mais clara do projecto.</p></div></div>
+    <div class="step reveal" style="--reveal-delay:70ms"><div class="step-num">02</div><div><b>CUIDA</b><p>Reconhece a importância dos cuidados necessários à criação.</p></div></div>
+    <div class="step reveal" style="--reveal-delay:70ms"><div class="step-num">03</div><div><b>PRODUZ</b><p>Compreende a produção como parte do desenvolvimento do teu negócio.</p></div></div>
+    <div class="step reveal" style="--reveal-delay:70ms"><div class="step-num">04</div><div><b>APRENDE</b><p>Procura conhecimento para tomar decisões mais conscientes.</p></div></div>
+    <div class="step reveal" style="--reveal-delay:70ms"><div class="step-num">05</div><div><b>CRESCE</b><p>Planeia os próximos passos de acordo com os teus recursos e objectivos.</p></div></div>
+  </div>
+</section>
+
+<section class="slider-wrap reveal reveal-scale parallax-wrap">
+  <div class="slider auto" data-speed="4100">
+    <article class="slide"><img src="assets/slide-05.jpeg" alt="Projeto mYo — imagem do projeto 5"></article>
+    <article class="slide"><img src="assets/slide-06.jpeg" alt="Projeto mYo — imagem do projeto 6"></article>
+    <article class="slide"><img src="assets/slide-07.jpeg" alt="Projeto mYo — imagem do projeto 7"></article>
+    <article class="slide"><img src="assets/slide-08.jpeg" alt="Projeto mYo — imagem do projeto 8"></article>
+  </div>
+  <div class="dots"><i class="dot active"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+</section>
+
+<section class="bridge reveal">
+  <div class="eyebrow">Começar pequeno não é pensar pequeno</div>
+  <h2>E se começares pequeno, mas com uma visão maior?</h2>
+  <p>Não precisas de ter tudo resolvido hoje. Podes começar por compreender o projecto, estudar as etapas e preparar-te para aplicar o que aprendeste de acordo com os teus recursos.</p>
+  <p><b>O importante é dar o próximo passo com mais informação e intenção.</b></p>
+  <p class="note">Os resultados dependem das condições da criação, dos custos, dos cuidados, da gestão e das decisões tomadas. Não existem garantias de lucro automático.</p>
+</section>
+
+<section class="offer reveal">
+  <div class="offer-copy">
+    <span class="tag">A OFERTA mYo</span>
+    <h2>Recebe os 3 projetos mYo</h2>
+    <p>Se queres dar mais estrutura às tuas ideias e explorar uma abordagem organizada para a criação de galinhas, conhece os materiais disponibilizados nesta oferta.</p>
+    <div class="offer-bullets">
+      <div>Uma oportunidade para aprofundares a tua preparação.</div>
+      <div>Uma visão de projecto para te ajudar a pensar nas etapas da criação.</div>
+      <div>Um primeiro passo para aprenderes e planeares de acordo com os teus objectivos.</div>
+    </div>
+  </div>
+  <div class="offer-card">
+    <a id="checkout-link" href="https://pagar.co.mz/p/projeto-1000-pintos-10-galinhas-500-ovos-7-dias--8ir74i" aria-label="Aceder à oferta Projeto mYo">
+      <img src="assets/offer.jpeg" alt="Oferta Projeto mYo — 1000 Pintos, 10 Galinhas e 500 Ovos">
+    </a>
+  </div>
+  <div class="offer-cta">
+    <a id="checkout-cta" class="cta" href="https://pagar.co.mz/p/projeto-1000-pintos-10-galinhas-500-ovos-7-dias--8ir74i">
+      QUERO OS 3 PROJETOS mYo <span aria-hidden="true">→</span>
+    </a>
+    <p class="disclaimer">Consulta os detalhes da oferta no checkout antes de concluir a compra.</p>
+  </div>
+</section>
+
+<section class="brand reveal">
+  <strong>mY<span style="color:#73b938">O</span></strong>
+  <small>CUIDA · NUTRE · VIVE</small>
+  <p>Começa pequeno. Aprende com propósito. Cresce com planeamento.</p>
+  <p>Conhecimento que transforma. Pessoas que produzem o futuro.</p>
+</section>
+</main>
+
+<script>
+(function(){
+  const music=document.getElementById('bgMusic'),button=document.getElementById('musicControl');
+  if(!music||!button)return;
+  let manuallyPaused=false;
+  function update(){
+    const playing=!music.paused;
+    button.classList.toggle('playing',playing);
+    button.classList.toggle('paused',!playing);
+    button.setAttribute('aria-label',playing?'Pausar música':'Tocar música');
+    button.title=playing?'Pausar música':'Tocar música';
+  }
+  function play(){
+    if(manuallyPaused||!music.paused)return;
+    music.play().catch(function(){update();});
+  }
+  button.addEventListener('click',function(){
+    if(music.paused){manuallyPaused=false;music.play().catch(function(){});}
+    else{manuallyPaused=true;music.pause();}
+    update();
+  });
+  music.addEventListener('play',update);
+  music.addEventListener('pause',update);
+  window.addEventListener('load',function(){play();update();},{once:true});
+  document.addEventListener('pointerdown',function(){if(!manuallyPaused&&music.paused)play();},{passive:true});
+  update();
+})();
+
+/* Carrosséis automáticos em loop, com suporte a toque. */
+document.querySelectorAll('.auto').forEach(function(s){
+  let i=0,t;
+  const slides=[...s.children],dots=s.parentElement.querySelectorAll('.dot');
+  function go(n){
+    i=(n+slides.length)%slides.length;
+    s.scrollTo({left:slides[i].offsetLeft-s.offsetLeft-18,behavior:'smooth'});
+    dots.forEach((d,k)=>d.classList.toggle('active',k===i));
+  }
+  function start(){clearInterval(t);t=setInterval(()=>go(i+1),+s.dataset.speed||4000);}
+  start();
+  s.addEventListener('touchstart',()=>clearInterval(t),{passive:true});
+  s.addEventListener('touchend',start,{passive:true});
+  s.addEventListener('mouseenter',()=>clearInterval(t));
+  s.addEventListener('mouseleave',start);
+});
+</script>
+<script>
+
+/* Animações ao fazer scroll: revelar, sequenciar e parallax discreto. */
+(function(){
+  const reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const targets=document.querySelectorAll('.reveal,.reveal-group');
+  if(!reduce&&'IntersectionObserver' in window){
+    document.documentElement.classList.add('reveal-ready');
+    const observer=new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target)}
+      });
+    },{threshold:.12,rootMargin:'0px 0px -30px 0px'});
+    targets.forEach(function(el){observer.observe(el)});
+  }else{targets.forEach(function(el){el.classList.add('is-visible')})}
+
+  const images=[...document.querySelectorAll('.parallax-wrap .slide img')];
+  let frame=false;
+  function updateParallax(){
+    if(!reduce){
+      const vh=window.innerHeight||700;
+      images.forEach(function(img){
+        const rect=img.getBoundingClientRect();
+        if(rect.bottom>-80&&rect.top<vh+80){
+          const offset=(rect.top+rect.height/2-vh/2)*-.035;
+          img.style.setProperty('--parallax-y',Math.max(-12,Math.min(12,offset))+'px');
+        }
+      });
+    }
+    frame=false;
+  }
+  function onScroll(){if(!frame){window.requestAnimationFrame(updateParallax);frame=true}}
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  updateParallax();
+
+  const bar=document.getElementById('readingProgress');
+  let ticking=false;
+  function updateProgress(){
+    const root=document.documentElement,max=root.scrollHeight-window.innerHeight;
+    const ratio=max>0?Math.min(1,Math.max(0,window.scrollY/max)):0;
+    if(bar)bar.style.width=(ratio*100)+'%';
+    ticking=false;
+  }
+  window.addEventListener('scroll',function(){if(!ticking){window.requestAnimationFrame(updateProgress);ticking=true}},{passive:true});
+  window.addEventListener('resize',updateProgress,{passive:true});
+  updateProgress();
+})();
+
+</script>
+<script src="https://myo-tracking.floot.app/_api/tracker"></script>
+</body>
+</html>
