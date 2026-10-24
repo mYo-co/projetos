@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#063b24">
+<meta name="description" content="Projeto mYo — 1000 Pintos & 10 Galinhas. Começa pequeno, produz, aprende e cresce com planeamento.">
+<title>mYo — Projeto 1000 Pintos &amp; 10 Galinhas</title>
+<style>
+:root{
+  --g:#063b2b;--g2:#0b4b38;--gold:#cda64a;--gold2:#f0d991;
+  --cream:#ffffff;--paper:rgba(255,255,255,.78);--ink:#17231c;--muted:#59665e;
+  --line:rgba(6,59,43,.10);--soft:#f6f8f6;--glass:rgba(255,255,255,.68);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:18px}
+body{margin:0;background:radial-gradient(ellipse at 8% 5%,#edf5ef 0,transparent 35%),radial-gradient(ellipse at 94% 30%,#f8f1dd 0,transparent 31%),#fff;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+.page{max-width:760px;margin:auto;background:rgba(255,255,255,.78);overflow:hidden;box-shadow:0 0 80px rgba(20,54,34,.055)}
+.hero{background:#fff;position:relative}
+.hero img,.offer img{display:block;width:100%;height:auto}
+.hero:after{content:"";display:block;height:1px;background:linear-gradient(90deg,transparent,var(--gold),rgba(6,59,43,.15),transparent)}
+.section{padding:40px 20px;text-align:left}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;color:#8b6b26;font-size:11px;font-weight:850;letter-spacing:.13em;text-transform:uppercase}
+.eyebrow:before{content:"";display:inline-block;width:18px;height:2px;background:var(--gold);border-radius:9px}
+h2{font-family:inherit;color:var(--g);font-size:clamp(29px,7.5vw,43px);font-weight:760;letter-spacing:-.045em;line-height:1.12;margin:13px 0 16px}
+h3{font-family:inherit;color:var(--g);font-size:23px;letter-spacing:-.025em;line-height:1.2;margin:0 0 12px}
+p{font-size:16px;line-height:1.75;color:var(--muted);margin:12px 0;text-wrap:pretty}
+strong,b{color:inherit}
+.lead{font-size:17px;line-height:1.75;color:#31483b}
+.highlight{color:#a77919}
+.flow{display:grid;grid-template-columns:repeat(5,1fr);margin-top:24px;background:rgba(255,255,255,.8);border:1px solid rgba(6,59,43,.11);border-radius:20px;overflow:hidden;box-shadow:0 10px 30px rgba(26,55,35,.045),inset 0 1px 0 rgba(255,255,255,.95);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.flow div{padding:13px 4px;border-right:1px solid var(--line)}.flow div:last-child{border:0}
+.flow b{color:#b58a30;display:block}.flow span{font-size:clamp(8px,2.5vw,11px);font-weight:850;color:var(--g)}
+.pain{background:rgba(255,255,255,.78);padding:38px 20px;text-align:left;border-top:1px solid rgba(6,59,43,.07);border-bottom:1px solid rgba(6,59,43,.07);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.pain .eyebrow{text-align:left}.pain h2{text-align:left}
+.pain-list{list-style:none;margin:22px 0 0;padding:0;display:grid;gap:10px}
+.pain-list li{position:relative;padding:14px 14px 14px 44px;background:rgba(255,255,255,.82);border:1px solid rgba(6,59,43,.09);border-radius:16px;color:#405348;font-size:16px;line-height:1.65;box-shadow:0 6px 22px rgba(20,54,34,.035),inset 0 1px 0 #fff;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.pain-list li:before{content:"✓";position:absolute;left:15px;top:14px;color:#a87915;font-weight:950}
+.slider-wrap{padding:24px 0 30px}
+.slider{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:0 20px 8px}
+.slider::-webkit-scrollbar{display:none}
+.slide{flex:0 0 84%;scroll-snap-align:center;border-radius:22px;overflow:hidden;box-shadow:0 16px 42px rgba(20,54,34,.12);background:#fff;border:1px solid rgba(255,255,255,.9)}
+.slide img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover}
+.dots{text-align:center}.dot{display:inline-block;width:6px;height:6px;border-radius:9px;background:#c9cec9;margin:3px}.dot.active{width:18px;background:var(--gold)}
+.vision{padding:44px 22px;background:linear-gradient(145deg,#073c2b,#0b4b38 70%,#124b37);text-align:left;position:relative;overflow:hidden}
+.vision:before{content:"";position:absolute;width:260px;height:260px;right:-110px;top:-120px;border:1px solid rgba(240,217,145,.2);border-radius:50%;box-shadow:0 0 0 28px rgba(240,217,145,.035),0 0 0 58px rgba(240,217,145,.025);pointer-events:none}
+.vision h2{color:#fff}.vision p{color:#dce8df}.vision .eyebrow{color:var(--gold2)}
+.goldline{width:58px;height:3px;background:linear-gradient(90deg,var(--gold),#f6e7b6);margin:20px 0;border-radius:5px}
+.steps{display:grid;gap:11px;margin-top:22px;text-align:left}
+.step{display:flex;gap:13px;align-items:flex-start;background:rgba(255,255,255,.82);border:1px solid rgba(6,59,43,.10);border-radius:18px;padding:15px;box-shadow:0 8px 26px rgba(20,54,34,.045),inset 0 1px 0 #fff;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.step-num{display:grid;place-items:center;flex:0 0 36px;height:36px;border-radius:13px;background:linear-gradient(145deg,#fff9e8,#f1e2b6);color:var(--g);font-weight:900;border:1px solid rgba(205,166,74,.25)}
+.step b{display:block;color:var(--g);margin-bottom:3px}.step p{font-size:15px;line-height:1.65;margin:0}
+.bridge{padding:40px 22px;text-align:left;background:linear-gradient(135deg,rgba(247,250,247,.95),rgba(255,255,255,.92));border-top:1px solid rgba(6,59,43,.08);border-bottom:1px solid rgba(6,59,43,.08)}
+.bridge h2{font-size:clamp(28px,7vw,39px)}
+.bridge .note{font-size:13px}
+.offer{background:linear-gradient(145deg,#063b2b,#052d20);padding:0}
+.offer-card{border:0;border-radius:0;overflow:hidden;background:#052d20;box-shadow:none}
+.offer-card>a{display:block;cursor:pointer}.offer-content{text-align:left;padding:28px 22px 24px;color:white}
+.tag{display:inline-block;background:linear-gradient(135deg,#fff1c4,#d6b35d);color:var(--g);padding:8px 13px;border-radius:10px;font-size:11px;font-weight:900;letter-spacing:.09em;box-shadow:0 5px 18px rgba(205,166,74,.16)}
+.offer h2{color:white}.offer h3{color:white}.offer p{color:#dbe8df}
+.offer-copy{padding:34px 22px 12px;text-align:left;background:transparent}
+.offer-copy p{color:#dbe8df}
+.offer-bullets{display:grid;gap:10px;text-align:left;max-width:480px;margin:20px 0 0;color:#f7f2e7;font-size:15px;line-height:1.65}
+.offer-bullets div:before{content:"✓";color:var(--gold2);font-weight:950;margin-right:9px}
+.price{color:var(--gold2);font-size:60px;font-weight:850;line-height:1;margin:20px 0}
+.price small{font-size:22px}
+.cta{display:flex;align-items:center;justify-content:center;gap:12px;background:linear-gradient(135deg,#f7e6ad,#d4ac50);border:1px solid rgba(255,239,190,.95);color:#062818;border-radius:16px;padding:17px 20px;font-weight:900;text-decoration:none;text-align:center;line-height:1.3;box-shadow:0 10px 28px rgba(205,166,74,.17),inset 0 1px 0 rgba(255,255,255,.7)}
+.cta span{display:grid;place-items:center;width:28px;height:28px;flex:0 0 28px;border-radius:10px;background:var(--g);color:white}
+.offer-cta{padding:0 22px 32px;background:transparent}.offer-cta .cta{width:100%}
+.disclaimer{font-size:14px;line-height:1.6;color:#b9cbbf!important;margin:14px auto 0;max-width:520px}
+.brand{text-align:center;padding:40px 18px 60px;background:rgba(255,255,255,.7)}
+.brand strong{font:750 48px Georgia,serif;color:var(--g)}
+.brand small{display:block;color:#9b6e17;font-weight:850;letter-spacing:.15em}
+.music-control{position:fixed;z-index:1000;right:16px;bottom:82px;width:52px;height:52px;border:1px solid rgba(205,166,74,.65);border-radius:18px;background:rgba(6,59,43,.96);color:#f0d991;display:grid;place-items:center;cursor:pointer;box-shadow:0 12px 32px rgba(6,35,21,.23),inset 0 1px 0 rgba(255,255,255,.16);-webkit-tap-highlight-color:transparent;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.music-control:active{transform:scale(.94)}
+.music-bars{display:flex;align-items:center;justify-content:center;gap:3px;height:22px}
+.music-bars i{display:block;width:3px;height:10px;border-radius:4px;background:#f0d991}
+.music-control.playing .music-bars i:nth-child(1){animation:musicbar .75s ease-in-out infinite alternate}
+.music-control.playing .music-bars i:nth-child(2){animation:musicbar .55s ease-in-out infinite alternate .1s}
+.music-control.playing .music-bars i:nth-child(3){animation:musicbar .85s ease-in-out infinite alternate .2s}
+@keyframes musicbar{from{height:7px}to{height:20px}}
+.pause-icon{display:none;font-size:18px;line-height:1}
+.music-control.paused .pause-icon{display:block}.music-control.paused .music-bars{display:none}
+.social-proof{position:relative;isolation:isolate;width:calc(100% - 36px);max-width:680px;margin:28px auto 24px;padding:15px 12px;display:flex;flex-wrap:nowrap;align-items:center;justify-content:space-between;gap:7px;border-radius:18px;background:linear-gradient(135deg,rgba(17,83,59,.98),rgba(8,57,41,.98));border:1.5px solid rgba(240,217,145,.48);box-shadow:0 0 0 3px rgba(240,217,145,.055),0 0 22px rgba(240,217,145,.13),inset 0 1px 0 rgba(255,255,255,.14);color:#f7f2e7;font-size:clamp(.72rem,3.1vw,.95rem);line-height:1.4;text-align:center;white-space:nowrap;animation:socialGlow 2.8s ease-in-out infinite}
+.social-proof-item{display:inline-flex;flex-wrap:nowrap;align-items:center;justify-content:center;gap:4px;white-space:nowrap}
+.social-proof-item strong{color:var(--gold2);font-weight:900}
+.social-proof-separator{color:#b9cbbf;flex:0 0 auto}
+.social-stars{color:var(--gold2);letter-spacing:.04em;font-size:1.05em;white-space:nowrap}
+.social-proof:before{content:"";position:absolute;z-index:-1;inset:-2px;border-radius:16px;background:linear-gradient(110deg,transparent 10%,rgba(240,217,145,.13) 48%,transparent 85%);opacity:.6;filter:blur(7px);pointer-events:none}
+@keyframes socialGlow{0%,100%{box-shadow:0 0 0 2px rgba(240,217,145,.10),0 0 12px rgba(240,217,145,.10),inset 0 1px 0 rgba(255,255,255,.12)}50%{box-shadow:0 0 0 4px rgba(240,217,145,.18),0 0 28px rgba(240,217,145,.28),inset 0 1px 0 rgba(255,255,255,.18)}}
+@media(max-width:380px){.section{padding:32px 16px}.pain{padding:32px 16px}.vision,.bridge{padding:36px 16px}.offer-copy{padding-left:18px;padding-right:18px}.offer-cta{padding-left:12px;padding-right:12px}.cta{padding:15px 12px;font-size:14px}.flow span{font-size:8.5px}.flow div{padding:10px 2px}.social-proof{width:calc(100% - 20px);gap:4px;padding:13px 7px;font-size:clamp(.68rem,3vw,.85rem)}}
+.hero img{transform-origin:center;animation:heroReveal 1.1s cubic-bezier(.2,.75,.25,1) both}
+@keyframes heroReveal{from{opacity:0;transform:scale(1.045)}to{opacity:1;transform:scale(1)}}
+.reveal-ready .reveal{opacity:0;transform:translateY(24px);transition:opacity .72s ease,transform .72s cubic-bezier(.2,.7,.2,1);transition-delay:var(--reveal-delay,0ms)}
+.reveal-ready .reveal.is-visible{opacity:1;transform:translateY(0)}
+.reveal-ready .reveal-left{transform:translateX(-22px)}.reveal-ready .reveal-left.is-visible{transform:translateX(0)}
+.reveal-ready .reveal-scale{transform:scale(.965)}.reveal-ready .reveal-scale.is-visible{transform:scale(1)}
+.pain-list li,.step,.slide,.offer-card{transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease}
+.pain-list li:hover,.step:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(6,59,36,.09);border-color:#d9c58f}
+.slide{scroll-behavior:smooth}.slide img{transition:transform .7s cubic-bezier(.2,.7,.2,1)}.slide:hover img{transform:scale(1.025)}
+.cta{position:relative;isolation:isolate;overflow:hidden;transition:transform .22s ease,box-shadow .22s ease,filter .22s ease}
+.cta:before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(110deg,transparent 20%,rgba(255,255,255,.48) 48%,transparent 72%);transform:translateX(-130%);animation:ctaShine 5.5s ease-in-out infinite}
+.cta span{transition:transform .22s ease}
+.cta:hover{transform:translateY(-2px);box-shadow:0 13px 30px rgba(217,173,75,.27);filter:saturate(1.06)}
+.cta:hover span{transform:translateX(3px)}.cta:active{transform:scale(.985)}
+@keyframes ctaShine{0%,68%,100%{transform:translateX(-130%)}84%{transform:translateX(130%)}}
+.tag{animation:tagFloat 4s ease-in-out infinite}
+@keyframes tagFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.goldline{position:relative;overflow:hidden}
+.goldline:after{content:"";position:absolute;inset:0;background:rgba(255,255,255,.72);transform:translateX(-110%);animation:lineSweep 3.8s ease-in-out infinite}
+@keyframes lineSweep{0%,65%,100%{transform:translateX(-110%)}82%{transform:translateX(110%)}}
+.dot{transition:width .25s ease,background .25s ease}
+.music-control{transition:transform .2s ease,box-shadow .25s ease}.music-control:hover{transform:translateY(-2px);box-shadow:0 14px 38px rgba(0,0,0,.3)}
+.reading-progress{position:fixed;z-index:1100;top:0;left:0;width:100%;height:3px;background:rgba(6,59,43,.08);pointer-events:none}
+.reading-progress span{display:block;width:0;height:100%;background:linear-gradient(90deg,#cda64a,#f0d991);transform-origin:left}
+.reveal-group > *{--stagger-index:0}
+.reveal-ready .reveal-group > *{opacity:0;transform:translateY(20px);transition:opacity .62s ease,transform .62s cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--stagger-index,0) * 95ms)}
+.reveal-ready .reveal-group.is-visible > *{opacity:1;transform:translateY(0)}
+.reveal-ready .reveal-group > *:nth-child(1){--stagger-index:0}.reveal-ready .reveal-group > *:nth-child(2){--stagger-index:1}.reveal-ready .reveal-group > *:nth-child(3){--stagger-index:2}.reveal-ready .reveal-group > *:nth-child(4){--stagger-index:3}.reveal-ready .reveal-group > *:nth-child(5){--stagger-index:4}
+.parallax-wrap{overflow:hidden}.parallax-wrap .slide img{will-change:transform;transform:translate3d(0,var(--parallax-y,0px),0) scale(1.025)}
+.offer.is-visible .offer-copy,.offer.is-visible .offer-card,.offer.is-visible .offer-cta{animation:offerArrive .75s cubic-bezier(.2,.7,.2,1) both}
+.offer.is-visible .offer-card{animation-delay:.12s}.offer.is-visible .offer-cta{animation-delay:.22s}
+@keyframes offerArrive{from{opacity:.65;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto}
+ *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+ .reveal-ready .reveal,.reveal-ready .reveal-group > *{opacity:1;transform:none}
+ .music-control.playing .music-bars i{animation:none}
+ .parallax-wrap .slide img{transform:none!important}
+ .offer.is-visible .offer-copy,.offer.is-visible .offer-card,.offer.is-visible .offer-cta{animation:none}
+}
+
+/* Barra superior Liquid Glass Premium + indicador animado */
+.live-topbar{
+  position:sticky;top:0;z-index:1200;width:100%;min-height:76px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:11px clamp(14px,4vw,30px);
+  background:rgba(255,255,255,.78);
+  border-bottom:1px solid rgba(6,59,43,.08);
+  box-shadow:0 8px 28px rgba(6,59,43,.055),inset 0 1px 0 rgba(255,255,255,.95);
+  backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);
+}
+.live-brand{display:flex;align-items:center;gap:12px;min-width:0;text-decoration:none;color:#063b2b}
+.live-brand-name{font:900 clamp(2rem,6vw,2.8rem)/.9 Georgia,"Times New Roman",serif;letter-spacing:-.09em;white-space:nowrap}
+.live-brand-name span{color:#75b83c}
+.live-brand-tagline{font-size:clamp(.57rem,2.2vw,.86rem);font-weight:850;letter-spacing:.09em;line-height:1.25;white-space:nowrap;color:#063b2b}
+.live-viewers{
+  flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  padding:9px 12px;border:1px solid rgba(220,64,55,.18);border-radius:999px;
+  background:rgba(255,248,247,.9);color:#bd2525;white-space:nowrap;
+  box-shadow:0 4px 16px rgba(217,65,55,.08),inset 0 1px 0 rgba(255,255,255,.98);
+  backdrop-filter:blur(16px) saturate(170%);-webkit-backdrop-filter:blur(16px) saturate(170%);
+  animation:liveGlow 2s ease-in-out infinite;
+}
+.live-dot{width:8px;height:8px;flex:0 0 8px;border-radius:50%;background:#ed3434;
+  box-shadow:0 0 0 0 rgba(237,52,52,.5);animation:livePulse 1.15s ease-out infinite}
+.live-count{font-size:.9rem;font-weight:900;font-variant-numeric:tabular-nums;min-width:1.1em;text-align:right}
+.live-label{font-size:.78rem;font-weight:800}
+@keyframes livePulse{0%{box-shadow:0 0 0 0 rgba(237,52,52,.5);opacity:1}70%{box-shadow:0 0 0 7px rgba(237,52,52,0);opacity:.82}100%{box-shadow:0 0 0 0 rgba(237,52,52,0);opacity:1}}
+@keyframes liveGlow{0%,100%{box-shadow:0 4px 14px rgba(217,65,55,.07),inset 0 1px 0 rgba(255,255,255,.98)}50%{box-shadow:0 5px 22px rgba(217,65,55,.17),0 0 12px rgba(205,166,74,.12),inset 0 1px 0 rgba(255,255,255,.98)}}
+@media(max-width:390px){
+  .live-topbar{min-height:66px;padding:9px 10px;gap:7px}
+  .live-brand{gap:7px}.live-brand-name{font-size:1.9rem}
+  .live-brand-tagline{font-size:.49rem;letter-spacing:.045em}
+  .live-viewers{gap:5px;padding:7px 8px}.live-label{font-size:.7rem}.live-count{font-size:.8rem}
+}
+@media(prefers-reduced-motion:reduce){
+  .live-dot,.live-viewers{animation:none}
+}
+
+</style>
+</head>
+<body>
+<div class="reading-progress" aria-hidden="true"><span id="readingProgress"></span></div>
+<audio id="bgMusic" src="assets/music.mp3" loop playsinline preload="auto"></audio>
+<button class="music-control paused" id="musicControl" type="button" aria-label="Tocar música" title="Tocar música"><span class="music-bars" aria-hidden="true"><i></i><i></i><i></i></span><span class="pause-icon" aria-hidden="true">Ⅱ</span></button>
+
+<header class="live-topbar">
+  <a class="live-brand" href="#top" aria-label="mYo — início">
+    <span class="live-brand-name">mY<span>O</span></span>
+    <span class="live-brand-tagline">CUIDA · NUTRE · VIVE</span>
+  </a>
+  <div class="live-viewers" aria-label="Indicador visual animado de atividade">
+    <span class="live-dot" aria-hidden="true"></span>
+    <span class="live-count" id="liveCount">20</span>
+    <span class="live-label">Ao vivo</span>
+  </div>
+</header>
+<main class="page" id="top">
+<section class="hero">
+  <img src="assets/hero.jpeg" alt="mYo — Projeto 1000 Pintos &amp; 10 Galinhas">
+</section>
+
+<section class="section reveal">
+  <div class="eyebrow">O começo de uma jornada</div>
+  <h2>Começa pequeno.<br>Produz. Aprende.<br><span class="highlight">Cresce.</span></h2>
+  <p class="lead">Transforma a tua vontade de criar galinhas num projecto com <b>direcção, organização e potencial para crescer.</b></p>
+  <p>Já imaginaste ter a tua própria criação de galinhas e construir, passo a passo, uma actividade que possa contribuir para o sustento da tua família?</p>
+  <div class="flow"><div><b>01</b><span>COMEÇA</span></div><div><b>02</b><span>CUIDA</span></div><div><b>03</b><span>PRODUZ</span></div><div><b>04</b><span>APRENDE</span></div><div><b>05</b><span>CRESCE</span></div></div>
+</section>
+
+<section class="pain reveal">
+  <div class="eyebrow">Uma forma mais organizada de começar</div>
+  <h2>Queres começar, mas ainda tens dúvidas?</h2>
+  <p>Talvez já tenhas pensado em criar galinhas, mas ainda não saibas bem como dar os primeiros passos.</p>
+  <ul class="pain-list reveal-group">
+    <li class="reveal" style="--reveal-delay:80ms">Como organizar a criação e o espaço disponível?</li>
+    <li class="reveal" style="--reveal-delay:80ms">Como planear as etapas da produção?</li>
+    <li class="reveal" style="--reveal-delay:80ms">Como preparar-te antes de investir tempo e dinheiro?</li>
+    <li class="reveal" style="--reveal-delay:80ms">Como transformar uma ideia num projecto com objectivos claros?</li>
+  </ul>
+  <p style="text-align:center;margin-top:22px"><b>A verdade é que não precisas de começar com uma grande estrutura para começares a aprender.</b> Precisas de orientação, planeamento e vontade de evoluir.</p>
+</section>
+
+<section class="slider-wrap reveal reveal-scale parallax-wrap">
+  <div class="slider auto" data-speed="3500">
+    <article class="slide"><img src="assets/slide-01.jpeg" alt="Projeto mYo — imagem do projeto 1"></article>
+    <article class="slide"><img src="assets/slide-02.jpeg" alt="Projeto mYo — imagem do projeto 2"></article>
+    <article class="slide"><img src="assets/slide-03.jpeg" alt="Projeto mYo — imagem do projeto 3"></article>
+    <article class="slide"><img src="assets/slide-04.jpeg" alt="Projeto mYo — imagem do projeto 4"></article>
+  </div>
+  <div class="dots"><i class="dot active"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+</section>
+
+<section class="vision reveal">
+  <div class="eyebrow">A visão mYo</div>
+  <h2>Hoje são mil.<br>Amanhã pode ser muito mais.</h2>
+  <div class="goldline"></div>
+  <p>Em vez de olhares apenas para aquilo que podes criar hoje, começa também a pensar no que podes construir amanhã.</p>
+  <p><b>Aprender primeiro, aplicar depois e evoluir com planeamento.</b></p>
+</section>
+
+
+<section class="slider-wrap reveal reveal-scale parallax-wrap">
+  <div class="slider auto" data-speed="4100">
+    <article class="slide"><img src="assets/slide-05.jpeg" alt="Projeto mYo — imagem do projeto 5"></article>
+    <article class="slide"><img src="assets/slide-06.jpeg" alt="Projeto mYo — imagem do projeto 6"></article>
+    <article class="slide"><img src="assets/slide-07.jpeg" alt="Projeto mYo — imagem do projeto 7"></article>
+    <article class="slide"><img src="assets/slide-08.jpeg" alt="Projeto mYo — imagem do projeto 8"></article>
+  </div>
+  <div class="dots"><i class="dot active"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+</section>
+
+<section class="bridge reveal">
+  <div class="eyebrow">Começar pequeno não é pensar pequeno</div>
+  <h2>E se começares pequeno, mas com uma visão maior?</h2>
+  <p>Não precisas de ter tudo resolvido hoje. Podes começar por compreender o projecto, estudar as etapas e preparar-te para aplicar o que aprendeste de acordo com os teus recursos.</p>
+  <p><b>O importante é dar o próximo passo com mais informação e intenção.</b></p>
+  <p class="note">Os resultados dependem das condições da criação, dos custos, dos cuidados, da gestão e das decisões tomadas. Não existem garantias de lucro automático.</p>
+</section>
+
+<section class="offer reveal">
+  <div class="offer-copy">
+    <span class="tag">A OFERTA mYo</span>
+    <h2>Recebe os 3 projetos mYo</h2>
+    <p>Se queres dar mais estrutura às tuas ideias e explorar uma abordagem organizada para a criação de galinhas, conhece os materiais disponibilizados nesta oferta.</p>
+    <div class="offer-bullets">
+      <div>Uma oportunidade para aprofundares a tua preparação.</div>
+      <div>Uma visão de projecto para te ajudar a pensar nas etapas da criação.</div>
+      <div>Um primeiro passo para aprenderes e planeares de acordo com os teus objectivos.</div>
+    </div>
+  </div>
+  <div class="offer-card">
+    <a id="checkout-link" href="https://pagar.co.mz/p/projeto-1000-pintos-10-galinhas-500-ovos-7-dias--8ir74i" aria-label="Aceder à oferta Projeto mYo">
+      <img src="assets/offer.jpeg" alt="Oferta Projeto mYo — 1000 Pintos, 10 Galinhas e 500 Ovos">
+    </a>
+  </div>
+  <div class="social-proof" aria-label="Indicadores de confiança do produto">
+    <span class="social-proof-item"><strong>+ de <span id="purchaseCount">1000</span></strong> adquiridos</span>
+    <span class="social-proof-separator" aria-hidden="true">|</span>
+    <span class="social-proof-item"><span class="social-stars" aria-label="4,5 de 5 estrelas">★★★★☆</span> <strong>4,5/5</strong></span>
+    <span class="social-proof-separator" aria-hidden="true">|</span>
+    <span class="social-proof-item"><strong><span id="reviewCount">597</span></strong> avaliações</span>
+  </div>
+  <div class="offer-cta">
+    <a id="checkout-cta" class="cta" href="https://pagar.co.mz/p/projeto-1000-pintos-10-galinhas-500-ovos-7-dias--8ir74i">
+      QUERO OS 3 PROJETOS mYo <span aria-hidden="true">→</span>
+    </a>
+    <p class="disclaimer">Consulta os detalhes da oferta no checkout antes de concluir a compra.</p>
+  </div>
+</section>
+
+<section class="brand reveal">
+  <strong>mY<span style="color:#73b938">O</span></strong>
+  <small>CUIDA · NUTRE · VIVE</small>
+  <p>Começa pequeno. Aprende com propósito. Cresce com planeamento.</p>
+  <p>Conhecimento que transforma. Pessoas que produzem o futuro.</p>
+</section>
+</main>
+
+<script>
+(function(){
+  const music=document.getElementById('bgMusic'),button=document.getElementById('musicControl');
+  if(!music||!button)return;
+  let manuallyPaused=false;
+  function update(){
+    const playing=!music.paused;
+    button.classList.toggle('playing',playing);
+    button.classList.toggle('paused',!playing);
+    button.setAttribute('aria-label',playing?'Pausar música':'Tocar música');
+    button.title=playing?'Pausar música':'Tocar música';
+  }
+  function play(){
+    if(manuallyPaused||!music.paused)return;
+    music.play().catch(function(){update();});
+  }
+  button.addEventListener('click',function(){
+    if(music.paused){manuallyPaused=false;music.play().catch(function(){});}
+    else{manuallyPaused=true;music.pause();}
+    update();
+  });
+  music.addEventListener('play',update);
+  music.addEventListener('pause',update);
+  window.addEventListener('load',function(){play();update();},{once:true});
+  document.addEventListener('pointerdown',function(){if(!manuallyPaused&&music.paused)play();},{passive:true});
+  update();
+})();
+
+/* Carrosséis automáticos em loop, com suporte a toque. */
+document.querySelectorAll('.auto').forEach(function(s){
+  let i=0,t;
+  const slides=[...s.children],dots=s.parentElement.querySelectorAll('.dot');
+  function go(n){
+    i=(n+slides.length)%slides.length;
+    s.scrollTo({left:slides[i].offsetLeft-s.offsetLeft-18,behavior:'smooth'});
+    dots.forEach((d,k)=>d.classList.toggle('active',k===i));
+  }
+  function start(){clearInterval(t);t=setInterval(()=>go(i+1),+s.dataset.speed||4000);}
+  start();
+  s.addEventListener('touchstart',()=>clearInterval(t),{passive:true});
+  s.addEventListener('touchend',start,{passive:true});
+  s.addEventListener('mouseenter',()=>clearInterval(t));
+  s.addEventListener('mouseleave',start);
+});
+</script>
+<script>
+
+/* Animações ao fazer scroll: revelar, sequenciar e parallax discreto. */
+(function(){
+  const reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const targets=document.querySelectorAll('.reveal,.reveal-group');
+  if(!reduce&&'IntersectionObserver' in window){
+    document.documentElement.classList.add('reveal-ready');
+    const observer=new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target)}
+      });
+    },{threshold:.12,rootMargin:'0px 0px -30px 0px'});
+    targets.forEach(function(el){observer.observe(el)});
+  }else{targets.forEach(function(el){el.classList.add('is-visible')})}
+
+  const images=[...document.querySelectorAll('.parallax-wrap .slide img')];
+  let frame=false;
+  function updateParallax(){
+    if(!reduce){
+      const vh=window.innerHeight||700;
+      images.forEach(function(img){
+        const rect=img.getBoundingClientRect();
+        if(rect.bottom>-80&&rect.top<vh+80){
+          const offset=(rect.top+rect.height/2-vh/2)*-.035;
+          img.style.setProperty('--parallax-y',Math.max(-12,Math.min(12,offset))+'px');
+        }
+      });
+    }
+    frame=false;
+  }
+  function onScroll(){if(!frame){window.requestAnimationFrame(updateParallax);frame=true}}
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  updateParallax();
+
+  const bar=document.getElementById('readingProgress');
+  let ticking=false;
+  function updateProgress(){
+    const root=document.documentElement,max=root.scrollHeight-window.innerHeight;
+    const ratio=max>0?Math.min(1,Math.max(0,window.scrollY/max)):0;
+    if(bar)bar.style.width=(ratio*100)+'%';
+    ticking=false;
+  }
+  window.addEventListener('scroll',function(){if(!ticking){window.requestAnimationFrame(updateProgress);ticking=true}},{passive:true});
+  window.addEventListener('resize',updateProgress,{passive:true});
+  updateProgress();
+})();
+
+</script>
+<script src="https://myo-tracking.floot.app/_api/tracker"></script>
+
+<script>
+/* Contador ilustrativo: varia a cada 2 segundos; não mede visitantes reais. */
+(function(){
+  const el=document.getElementById('liveCount');
+  if(!el)return;
+  const reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let value=20;
+  function update(){
+    value += Math.random()<.5 ? -1 : 1;
+    if(value<17)value=18;
+    if(value>24)value=23;
+    el.textContent=String(value);
+  }
+  if(!reduce) window.setInterval(update,2000);
+})();
+</script>
+
+<script>
+/* Contadores ilustrativos: sobem lentamente de 4 em 4 segundos; não representam dados verificados em tempo real. */
+(function(){
+  const purchases=document.getElementById('purchaseCount');
+  const reviews=document.getElementById('reviewCount');
+  if(!purchases||!reviews)return;
+  let purchaseValue=1000;
+  let reviewValue=597;
+  window.setInterval(function(){
+    purchaseValue+=1;
+    purchases.textContent=String(purchaseValue);
+  },4000);
+  window.setInterval(function(){
+    reviewValue+=1;
+    reviews.textContent=String(reviewValue);
+  },4000);
+})();
+</script>
+
+</body>
+</html>
